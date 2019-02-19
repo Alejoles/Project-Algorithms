@@ -37,6 +37,9 @@ struct Node{
 		Node(int x, int y) : x(x), y(y) {}
 		void ChangePos(Node nod, int x1, int y1, int x2, int y2);
 		int NodeGrade(Node n);
+		bool pathExistence();
+		void searchPath();
+		void bestPath();
 
 
 		
@@ -76,6 +79,8 @@ class qtree{
 
 //--------------------------------Ahora vamos a definir las funciones de qtree---------------------------------
 
+		void successor();
+		void predeccessor();
 		void divide(){
 			
 
