@@ -4,67 +4,66 @@
 
 using namespace std;
 //-------------------------------------------------------------------------------------
-//					Clase punto(Point)
-class Point{
-	int x,y;
+//					Estructura punto(Point)
+struct Point{
+	private:
+		int x,y;
 	public:
-		Point(int x, int y){
-		this->x = x;
-		this->y = y;
-		}
-
-
+		Point() : x(0), y(0) {}
+		Point(int x, int y) : x(x), y(y) {}
 };
-//------------------------------Acá se acaba la clase Point-------------------------------
+//------------------------------Acá se acaba la structura Point-------------------------------
 //---------------------------------------------------------------------------------------
 //---------------------------------------------------------------------------------------
-//					Clase Rectangulo(Rect)
-class Rect{
+//					Estructura Rectangulo(Rect)
+struct Rect{
+	private:
 	int x, y, width, height; //variables x,y(lugar) & w,h(width, height) ancho altura.
 	public:
-		Rect(int x,int y,int w,int h){
-			this->x = x;
-			this->y = y;
-			this->width = w;
-			this->height = h;
+		Rect(): x(0),y(0),width(0),height(0) {}
+		Rect(int x, int y, int w, int h) : x(x), y(y), width(w), height(h) {} 
 
-		}
-/*		void set_values(int x,int y,int w,int h){
-			this->x = x;
-			this->y = y;
-			this->width = w;
-			this->height = h;
-
-		}
-		int x(int x){ 
-			x = this->x;
-			return x; 
-		}
-		int y(int y){ 
-			y = this->y;
-			return y; 
-		}
-		int w(int w){ 
-			w = this->width;
-			return w; 
-		}
-		int h(int h){ 
-			h = this->height;
-			return h; 
-		}
-
-*/	
+	
 };
-//-----------------------------Acá se acaba la clase Rect-------------------------------------
+//-----------------------------Acá se acaba la estructura Rect-------------------------------------
 //---------------------------------------------------------------------------------------
+//-----------------------------Acá empiezan las estructuras del grafo---------------------------
+//----------------------------------------Estructura Nodo(vertice||vertex)---------------------------------------------
+struct Node{
+	private:
+		int x,y;
+	public:
+		Node() : x(0), y(0) {}
+		Node(int x, int y) : x(x), y(y) {}
+		void ChangePos(Node nod, int x1, int y1, int x2, int y2);
+
+
+		
+};
+//------------------------------Esctructura arista(edge||link)------------------------------------
+
+struct Edge{
+	private:
+		Node nod1,nod2;
+		bool directed = false;
+	public:
+		Edge(Node nod1, Node nod2) : nod1(nod1) , nod2(nod2) {}
+		int GiveValue(Edge);
+		bool isConnected(Edge);
+		void MakeConection(Node con,Node tocon);
+		void MakeDirection();
+
+};
+
+//------------------------Aca terminan las estructuras del grafo--------------------------------
 //---------------------------------------------------------------------------------------
 //					Clase del QuadTree
 class qtree{
-
-	vector<int> points;
-	Rect frame;
-	int capacity;
-	bool divided = false;
+	private:
+		vector<int> points;
+		Rect frame;
+		int capacity;
+		bool divided = false;
 
 	public://--------------------Acá definimos la forma de nuestro quadtree--------------------------------------------
 		qtree(Rect Frame, int n){
