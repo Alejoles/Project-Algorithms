@@ -36,6 +36,7 @@ struct Node{
 		Node() : x(0), y(0) {}
 		Node(int x, int y) : x(x), y(y) {}
 		void ChangePos(Node nod, int x1, int y1, int x2, int y2);
+		int NodeGrade(Node n);
 
 
 		
@@ -46,12 +47,14 @@ struct Edge{
 	private:
 		Node nod1,nod2;
 		bool directed = false;
+		bool connected = false;
 	public:
 		Edge(Node nod1, Node nod2) : nod1(nod1) , nod2(nod2) {}
 		int GiveValue(Edge);
-		bool isConnected(Edge);
+		bool isConnected(Edge e, Node n1, Node n2);
 		void MakeConection(Node con,Node tocon);
-		void MakeDirection();
+		void GiveDirection();
+		
 
 };
 
