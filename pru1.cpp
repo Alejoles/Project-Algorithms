@@ -1,33 +1,10 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include "quadtree.hh"
 //     	wxWidgets	UML Use Case // Activity diagrams  Matching(GRAFOS)
 
 using namespace std;
-//-------------------------------------------------------------------------------------
-//					Estructura punto(Point)
-struct Point{
-	private:
-		int x,y;
-	public:
-		Point() : x(0), y(0) {}
-		Point(int x, int y) : x(x), y(y) {}
-};
-//------------------------------Acá se acaba la structura Point-------------------------------
-//---------------------------------------------------------------------------------------
-//---------------------------------------------------------------------------------------
-//					Estructura Rectangulo(Rect)
-struct Rect{
-	private:
-	int x, y, width, height; //variables x,y(lugar) & w,h(width, height) ancho altura.
-	public:
-		Rect(): x(0),y(0),width(0),height(0) {}
-		Rect(int x, int y, int w, int h) : x(x), y(y), width(w), height(h) {} 
-
-	
-};
-//-----------------------------Acá se acaba la estructura Rect-------------------------------------
-//---------------------------------------------------------------------------------------
 //-----------------------------Acá empiezan las estructuras del grafo---------------------------
 //----------------------------------------Estructura Nodo(vertice||vertex)---------------------------------------------
 class Node{
@@ -53,7 +30,7 @@ void Node::ChangePos(int x1, int y1){
 	y = y1;
 
 }
-
+/*
 int Node::NodeGrade(){  //Matriz de incidencia
 
 }
@@ -67,7 +44,7 @@ void Node::searchPath(Node n){ // Buscar el camino en la matriz de adyacencia
 bool Node::PathExistence(Node n){ 
 
 }
-
+*/
 //------------------------------Esctructura arista(edge||link)------------------------------------
 
 class Edge{
@@ -88,14 +65,7 @@ class Edge{
 };
 //------------------------------------Vamos a definir los metodos de edge----------------------------
 
-
-bool Edge::isConnected(){
-	
-	if(  )
-
-}
-
-
+//---------------------------------------------------------------------------------------------------
 //------------------------Aca terminan las estructuras del grafo--------------------------
 //---------------------------------------------------------------------------------------
 int main(void){
