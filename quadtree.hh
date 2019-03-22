@@ -1,7 +1,8 @@
 #ifndef _quadtree_hh
 #define	_quadtree_hh
-#include <iostream>
 #include <vector>
+#include <iostream>
+
 
 using namespace std;
 //-------------------------------------------------------------------------------------
@@ -12,6 +13,14 @@ struct Point{
 	public:
 		Point() : x(0), y(0) {}
 		Point(int x, int y) : x(x), y(y) {}
+		// setters & getters--
+		int getPX();
+		int getPY();
+		void setPX(int v);
+		void setPY(int v);
+		//_----------------
+		
+		
 };
 //------------------------------Acá se acaba la structura Point-------------------------------
 //---------------------------------------------------------------------------------------
@@ -28,43 +37,26 @@ struct Rect{
 };
 //-----------------------------Acá se acaba la estructura Rect-------------------------------------
 //-------------------------------------------------------------------------------------------------
-//-------------------------------------------------------------------------------------------------
-//-------------------------------------------------------------------------------------------------
+
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
 //					Clase del QuadTree
 class qtree{
 	private:
-		vector<Point> points;
 		Rect frame;
 		unsigned capacity;
+		vector<Point> points;
 		bool divided = false;
 
 	public://--------------------Acá definimos la forma de nuestro quadtree--------------------------------------------
-		qtree(Rect Frame, unsigned n){
-			this->frame = Frame;
-			this->capacity = n;
-		}
-
-//--------------------------------Ahora vamos a definir las funciones de qtree---------------------------------
+		qtree() : frame(0), capacity(0) {}
+		qtree(Rect Frame, unsigned n) : frame(Frame), capacity(n) {}
 
 		void successor();
 		void predeccessor();
 		void divide();
-
-		void insert(Point x){
-			if(points.size() < capacity){
-				this->points.push_back(x);
-			}else {
-				if(!this->divided){
-				this->divide();
-				this->divided = true;
-				}
-			}
-		}
-
-
+		void insert(Point x);
 		
 };
 //---------------------------Acá se acaba la clase qtree-------------------------------------------------
-#endif
+#endif //_quadtree_hh_
