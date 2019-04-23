@@ -6,7 +6,7 @@
 using namespace std;
 //-------------------------------------------------------------------------------------
 //					Estructura punto(Point)
-struct Point{
+struct Point {
 	private:
 		int x,y;
 	public:
@@ -25,16 +25,16 @@ struct Point{
 
 //-------------------------------------------------------------------------------------------------
 //					Clase del QuadTree
-class qtree{
+class Qtree {
 	private:
-		struct Node{
+		struct QtreeNode {
 			Point Value;
-			Node *NorthWest;
-			Node *NorthEast;
-			Node *SouthWest;
-			Node *SouthEast;
-			Node *Padre;
-			//Node(Point v, Node *NW = nullptr, Node *NE = nullptr, Node *SW = nullptr, Node *SE = nullptr): Value{v}, NorthWest{NW}, NorthEast{NE}, SouthWest{SW}, SouthEast{SE} {}
+			QtreeNode *NorthWest;
+			QtreeNode *NorthEast;
+			QtreeNode *SouthWest;
+			QtreeNode *SouthEast;
+			QtreeNode *Padre;
+			// Node(Point v, Node *NW = nullptr, Node *NE = nullptr, Node *SW = nullptr, Node *SE = nullptr): Value{v}, NorthWest{NW}, NorthEast{NE}, SouthWest{SW}, SouthEast{SE} {}
 			
 		};
 		
@@ -42,11 +42,15 @@ class qtree{
 		Point ArribaIz = Point(0,0);
 		Point AbajoDer = Point(400,400);
 		
+		
+		QtreeNode * Successor(QtreeNode *root)const;
+		QtreeNode * Predecessor(QtreeNode *root)const;
+		
 		Node *Quadtree = nullptr;
 
 	public:
-		qtree();
-		~qtree();
+		Qtree();
+		~Qtree();
 		void insert(Node *nuevo);
 		bool inBounds(Point p);
 		Node * Search(Point p);
