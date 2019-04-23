@@ -49,12 +49,12 @@ class Qtree {
 		Node *Quadtree = nullptr;
 
 	public:
-		Qtree();
+		Qtree() = default;
 		~Qtree();
 		void insert(Node *nuevo);
 		bool inBounds(Point p);
-		Node * Search(Point p);
-		void remove();
+		QtreeNode * Search(Point p);
+		void remove(QtreeNode Point p);
 		
 };
 //---------------------------Acá se acaba la clase qtree-------------------------------------------------

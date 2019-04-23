@@ -41,7 +41,9 @@ bool qtree::inBounds(Point p){
 	return (p.x >= ArribaIz.x && p.x <= AbajoDer.x && p.y >= ArribaIz.y && p.y <= AbajoDer.y);
 }
 
+QtreeNode * Qtree::Search(){
 
+}
 
 
 
