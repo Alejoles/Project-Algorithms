@@ -19,13 +19,8 @@ void Point::setPY(int v){
 
 //--------------------------------END OF POINT-----------------------------------
 
-//-------------------------METODOS DE LA CLASE RECT-----------------------------
 
-
-
-
-
-//----------------------------------END OF RECT-------------------------------
+//----------------------------------END OF Square-------------------------------
 
 
 
@@ -40,3 +35,15 @@ void qtree::insert(Point x){
 		}
 	}
 }
+
+bool qtree::inBounds(Point p){
+	//Esta funcion nos dice si el punto pertenece a nuestra "base"
+	return (p.x >= ArribaIz.x && p.x <= AbajoDer.x && p.y >= ArribaIz.y && p.y <= AbajoDer.y);
+}
+
+
+
+
+
+
+

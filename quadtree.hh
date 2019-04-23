@@ -1,6 +1,5 @@
 #ifndef _quadtree_hh
 #define	_quadtree_hh
-#include <vector>
 #include <iostream>
 
 
@@ -11,51 +10,47 @@ struct Point{
 	private:
 		int x,y;
 	public:
-		Point() : x(0), y(0) {}
-		Point(int x, int y) : x(x), y(y) {}
+		Point() : x{0}, y{0} {}
+		Point(int nx, int ny) : x{nx}, y{ny} {}
 		// setters & getters--
 		int getPX();
 		int getPY();
 		void setPX(int v);
 		void setPY(int v);
-		//_----------------
-		
 		
 };
 //------------------------------Acá se acaba la structura Point-------------------------------
-//---------------------------------------------------------------------------------------
-//---------------------------------------------------------------------------------------
-//					Estructura Rectangulo(Rect)
-struct Rect{
-	private:
-	int x, y, width, height; //variables x,y(lugar) & w,h(width, height) ancho altura.
-	public:
-		Rect(): x(0),y(0),width(0),height(0) {}
-		Rect(int x, int y, int w, int h) : x(x), y(y), width(w), height(h) {} 
 
-	
-};
-//-----------------------------Acá se acaba la estructura Rect-------------------------------------
-//-------------------------------------------------------------------------------------------------
+//Se elimino la estructura Rect ya que se reemplazo por 2 puntos que marcan las esquinas.
 
-//-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
 //					Clase del QuadTree
 class qtree{
 	private:
-		Rect frame;
-		unsigned capacity;
-		vector<Point> points;
-		bool divided = false;
+		struct Node{
+			Point Value;
+			Node *NorthWest;
+			Node *NorthEast;
+			Node *SouthWest;
+			Node *SouthEast;
+			Node *Padre;
+			//Node(Point v, Node *NW = nullptr, Node *NE = nullptr, Node *SW = nullptr, Node *SE = nullptr): Value{v}, NorthWest{NW}, NorthEast{NE}, SouthWest{SW}, SouthEast{SE} {}
+			
+		};
+		
+		//-------------- Bounds // Esquinas -------------
+		Point ArribaIz = Point(0,0);
+		Point AbajoDer = Point(400,400);
+		
+		Node *Quadtree = nullptr;
 
-	public://--------------------Acá definimos la forma de nuestro quadtree--------------------------------------------
-		qtree() : frame(0), capacity(0) {}
-		qtree(Rect Frame, unsigned n) : frame(Frame), capacity(n) {}
-
-		void successor();
-		void predeccessor();
-		void divide();
-		void insert(Point x);
+	public:
+		qtree();
+		~qtree();
+		void insert(Node *nuevo);
+		bool inBounds(Point p);
+		Node * Search(Point p);
+		void remove();
 		
 };
 //---------------------------Acá se acaba la clase qtree-------------------------------------------------
