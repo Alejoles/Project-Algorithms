@@ -49,15 +49,15 @@ void Invariante() const{
 }
 
 void Qtree::insert(QtreeNode * &root, Point x){
-	
+	//chequear en que parte del mapeado estan los puntos y asi mismo agregarlos al arbol
 
 }
 void insert(Point p){
-
+	//incovar el metodo anterior sumando al contador
 }
 
 QtreeNode Qtree::find()const{
-	
+	//no se que hacer aca aun
 }
 
 void Qtree::clear(QtreeNode * &root){
