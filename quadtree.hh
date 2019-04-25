@@ -31,9 +31,9 @@ struct Point {
 class Qtree {
 	private:
 		struct QtreeNode {
-			vector<Punto> Puntos;
-			Punto TopL;
-			Punto BotR;
+			vector<Point> Puntos;
+			Point TopL = Point(0,0);		// puntos pueden ir en privado
+			Point BotR = Point(800,800);
 			bool leaf;
 			QtreeNode *NorthWest = nullptr;
 			QtreeNode *NorthEast = nullptr;
@@ -52,6 +52,7 @@ class Qtree {
 		void remove(QtreeNode * &root, Point p);
 		void insert(QtreeNode * &root, Point p);
 		void clear(QtreeNode * &root);
+		void calificar(); // lo que hace esta funcion es ver que nodos son hojas y que nodos no lo son
 		QtreeNode * find(QtreeNode *root, Point p)const;
 		
 		//size_t Num_Leaves(QtreeNode *root)const;
@@ -69,8 +70,7 @@ class Qtree {
 		void remove(Point p);// no estoy seguro de que quitar
 		void clear(void);
 		
-		Point ArribaIz = Point(0,0);		// puntos pueden ir en privado
-		Point AbajoDer = Point(800,800);
+		
 		
 };
 //---------------------------Acá se acaba la clase qtree-------------------------------------------------

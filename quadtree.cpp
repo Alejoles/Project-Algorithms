@@ -32,22 +32,46 @@ bool Point::inBounds(Point p){
 
 
 // Metodos del qtree
-void Invariante() const{
+void Qtree::Invariante() const{
 	
 }
 
 void Qtree::insert(QtreeNode * &root, QtreeNode *Padre, Point p){
 	//chequear en que parte del mapeado estan los puntos y asi mismo agregarlos al arbol
-	if(root == nullptr){
+	if(root == nullptr){			// caso base recursivo
 		root = new QtreeNode;
-		root->Puntos.push_back(p);
 		root->Padre = Padre;
-		if()
-		root->NorthWest = nullptr;
-		root->NorthEast = nullptr;
-		root->SouthWest = nullptr;
-		root->SouthEast = nullptr;
+		if(p.x <= (TopL.x + BotR.x)/2 && p.y <= (TopL.y + BotR.y)/2){	// Arriba izquierda
+			root->NorthWest->Puntos.push_back(p);
+			root->NorthEast = nullptr;
+			root->SouthWest = nullptr;
+			root->SouthEast = nullptr;
+		}
+		else if(p.x >= (TopL.x + BotR.x)/2 && p.y <= (TopL.y + BotR.y)/2){ // Arriba derecha
+			root->NorthWest = nullptr;
+			root->NorthEast->Puntos.push_back(p);
+			root->SouthWest = nullptr;
+			root->SouthEast = nullptr;
+		}
+		else if(p.x <= (TopL.x + BotR.x)/2 && p.y >= (TopL.y + BotR.y)/2){ // Abajo izquierda
+			root->NorthEast = nullptr;
+			root->NorthWest = nullptr;
+			root->SouthWest->Puntos.push_back(p);
+			root->SouthEast = nullptr;
+		}
+		else if(p.x >= (TopL.x + BotR.x)/2 && p.y >= (TopL.y + BotR.y)/2){ // Abajo Derecha
+			root->NorthEast = nullptr;
+			root->NorthWest = nullptr;
+			root->SouthWest = nullptr;
+			root->SouthEast->Puntos.push_back(p);
+		}
+		
 		// cada nodo asignarlo en su correspondiente valor
+	}
+	else {
+		if(p.x <= TopL.x){ // caso recursivo, va mirando en dónde meter el nodo, y se ejecuta las veces necesarias.
+			
+		}
 	}
 }
 void insert(Point p){
