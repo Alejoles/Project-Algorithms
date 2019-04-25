@@ -1,5 +1,6 @@
 #include "quadtree.hh"
 #include <stdlib>
+#include <vector>
 
 //--------------------------METODOS DE LA CLASE POINT------------------------------
 
@@ -32,29 +33,29 @@ bool Point::inBounds(Point p){
 
 // Metodos del qtree
 void Invariante() const{
-	if(root == nullptr){
-		std::cout << "Root == null pointer." << std::endl;
-		exit(EXIT_FAILURE);
-	}
-	if(!inBounds(x)){
-		std::cout << "The point is out of bounds." << std::endl;
-		exit(EXIT_FAILURE);
-	}
-	if(abs(topLeft.x - botRight.x) <= 1 && abs(topLeft.y - botRight.y) <= 1){
-		if(Qtree == nullptr){
-			Qtree = root;
-			std::cout << "The space given for the tree now is so small to continue. (you can expand the bounds)" << std::endl;
-			exit(EXIT_FAILURE);
-	}
+	
 }
 
-void Qtree::insert(QtreeNode * &root, Point x){
+void Qtree::insert(QtreeNode * &root, QtreeNode *Padre, Point p){
 	//chequear en que parte del mapeado estan los puntos y asi mismo agregarlos al arbol
-
+	if(root == nullptr){
+		root = new QtreeNode;
+		root->Puntos.push_back(p);
+		root->Padre = Padre;
+		if()
+		root->NorthWest = nullptr;
+		root->NorthEast = nullptr;
+		root->SouthWest = nullptr;
+		root->SouthEast = nullptr;
+		// cada nodo asignarlo en su correspondiente valor
+	}
 }
 void insert(Point p){
 	//incovar el metodo anterior sumando al contador
 }
+
+// Se puede crear un metodo para organizar los puntos tal que todos queden en las hojas
+
 
 QtreeNode Qtree::find()const{
 	//no se que hacer aca aun

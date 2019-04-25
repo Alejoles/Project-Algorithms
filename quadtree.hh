@@ -1,6 +1,7 @@
 #ifndef _quadtree_hh
 #define	_quadtree_hh
 #include <iostream>
+#include <vector>
 
 
 using namespace std;
@@ -10,10 +11,6 @@ struct Point {
 	private:
 		int x,y;
 		
-		//-------------- Bounds // Esquinas -------------
-		Point ArribaIz = Point(0,0);
-		Point Centro = Point(200,200);
-		Point AbajoDer = Point(400,400);
 	public:
 		Point() : x{0}, y{0} {}
 		Point(int nx, int ny) : x{nx}, y{ny} {}
@@ -34,13 +31,15 @@ struct Point {
 class Qtree {
 	private:
 		struct QtreeNode {
-			Point Value;
+			vector<Punto> Puntos;
+			Punto TopL;
+			Punto BotR;
 			bool leaf;
-			QtreeNode *NorthWest;
-			QtreeNode *NorthEast;
-			QtreeNode *SouthWest;
-			QtreeNode *SouthEast;
-			QtreeNode *Padre;	//devolver
+			QtreeNode *NorthWest = nullptr;
+			QtreeNode *NorthEast = nullptr;
+			QtreeNode *SouthWest = nullptr;
+			QtreeNode *SouthEast = nullptr;
+			QtreeNode *Padre = nullptr;	//devolver
 			
 			// QtreeNode(Point v, Node *NW = nullptr, Node *NE = nullptr, Node *SW = nullptr, Node *SE = nullptr): Value{v}, NorthWest{NW}, NorthEast{NE}, SouthWest{SW}, SouthEast{SE} {}
 			
@@ -57,6 +56,8 @@ class Qtree {
 		
 		//size_t Num_Leaves(QtreeNode *root)const;
 		
+		//-------------- Bounds // Esquinas -------------
+		
 		Node *Quadtree = nullptr;
 		size_t count = 0;
 
@@ -68,6 +69,15 @@ class Qtree {
 		void remove(Point p);// no estoy seguro de que quitar
 		void clear(void);
 		
+		Point ArribaIz = Point(0,0);		// puntos pueden ir en privado
+		Point AbajoDer = Point(800,800);
+		
 };
 //---------------------------Acá se acaba la clase qtree-------------------------------------------------
+
+
+
+
+
+
 #endif //_quadtree_hh_
