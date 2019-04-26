@@ -88,9 +88,9 @@ void insertP(Point p){
 // Se puede crear un metodo para organizar los puntos tal que todos queden en las hojas
 
 
-Qtree::QtreeNode * Qtree::find()const{
+/*Qtree::QtreeNode * Qtree::find()const{
 	//no se que hacer aca aun
-}
+}*/
 
 void Qtree::clear(QtreeNode * &root){
 	if(root != nullptr){
@@ -106,8 +106,8 @@ void Qtree::clear(QtreeNode * &root){
 	}
 }
 void Qtree::clear(void){
-	clear(Qtree);
-	Qtree = nullptr;
+	clear(Quadtree);
+	Quadtree = nullptr;
 	count = 0;
 }
 

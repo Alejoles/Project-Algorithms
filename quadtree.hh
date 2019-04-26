@@ -53,7 +53,7 @@ class Qtree {
 		void insert(QtreeNode * &root, QtreeNode *Padre, Point p);
 		void clear(QtreeNode * &root);
 		void calificar(); // lo que hace esta funcion es ver que nodos son hojas y que nodos no lo son
-		QtreeNode * find(QtreeNode *root, Point p)const;
+		//QtreeNode * find(QtreeNode *root, Point p)const;
 		void Invariante() const;
 		
 		//size_t Num_Leaves(QtreeNode *root)const;
