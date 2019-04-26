@@ -10,7 +10,6 @@ using namespace std;
 struct Point {
 	private:
 		int x,y;
-		
 	public:
 		Point() : x{0}, y{0} {}
 		Point(int nx, int ny) : x{nx}, y{ny} {}
@@ -20,7 +19,6 @@ struct Point {
 		void setPX(int v);
 		void setPY(int v);
 		bool inBounds(Point p);
-		
 };
 //------------------------------Acá se acaba la structura Point-------------------------------
 
@@ -28,13 +26,15 @@ struct Point {
 
 //-------------------------------------------------------------------------------------------------
 //					Clase del QuadTree
+
+// Cuando insertar un nuevo nodo en el arbol
 class Qtree {
 	private:
 		struct QtreeNode {
 			vector<Point> Puntos;
 			Point TopL = Point(0,0);		// puntos pueden ir en privado
 			Point BotR = Point(800,800);
-			bool leaf;
+			bool leaf = false;
 			QtreeNode *NorthWest = nullptr;
 			QtreeNode *NorthEast = nullptr;
 			QtreeNode *SouthWest = nullptr;
@@ -50,23 +50,25 @@ class Qtree {
 		QtreeNode * Predecessor(QtreeNode *root)const;*/
 		
 		void remove(QtreeNode * &root, Point p);
-		void insert(QtreeNode * &root, Point p);
+		void insert(QtreeNode * &root, QtreeNode *Padre, Point p);
 		void clear(QtreeNode * &root);
 		void calificar(); // lo que hace esta funcion es ver que nodos son hojas y que nodos no lo son
 		QtreeNode * find(QtreeNode *root, Point p)const;
+		void Invariante() const;
 		
 		//size_t Num_Leaves(QtreeNode *root)const;
 		
 		//-------------- Bounds // Esquinas -------------
 		
-		Node *Quadtree = nullptr;
+		QtreeNode *Quadtree = nullptr;
 		size_t count = 0;
+		
 
 	public:
 		Qtree() = default;
 		~Qtree();
-		void insert(Point p);
-		QtreeNode find(Point p)const;//not sure
+		void insertP(Point p);
+		bool find(Point p)const;//not sure
 		void remove(Point p);// no estoy seguro de que quitar
 		void clear(void);
 		
