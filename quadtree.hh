@@ -3,24 +3,8 @@
 #include <iostream>
 #include <vector>
 
+#include "Point.cpp"
 
-using namespace std;
-//-------------------------------------------------------------------------------------
-//					Estructura punto(Point)
-struct Point {
-	private:
-		int x,y;
-	public:
-		Point() : x{0}, y{0} {}
-		Point(int nx, int ny) : x{nx}, y{ny} {}
-		// setters & getters--
-		int getPX();
-		int getPY();
-		void setPX(int v);
-		void setPY(int v);
-		bool inBounds(Point p);
-};
-//------------------------------Acá se acaba la structura Point-------------------------------
 
 //Se elimino la estructura Rect ya que se reemplazo por 2 puntos que marcan las esquinas.
 
@@ -39,7 +23,7 @@ class Qtree {
 			QtreeNode *NorthEast = nullptr;
 			QtreeNode *SouthWest = nullptr;
 			QtreeNode *SouthEast = nullptr;
-			QtreeNode *Padre = nullptr;	//devolver
+			QtreeNode *Padre = nullptr;		// Guarda el dato del nodo anterior para así saber de donde viene
 			
 			// QtreeNode(Point v, Node *NW = nullptr, Node *NE = nullptr, Node *SW = nullptr, Node *SE = nullptr): Value{v}, NorthWest{NW}, NorthEast{NE}, SouthWest{SW}, SouthEast{SE} {}
 			

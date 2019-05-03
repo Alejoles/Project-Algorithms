@@ -2,7 +2,6 @@
 #define _Point_hpp_
 
 
-
 //					Clase punto(Point)
 
 class Point {
@@ -11,6 +10,7 @@ class Point {
 	public:
 		Point() : x{0}, y{0} {}
 		Point(int nx, int ny) : x{nx}, y{ny} {}
+		~Point();
 		// setters & getters--
 		int getPX();
 		int getPY();

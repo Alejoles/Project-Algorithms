@@ -4,32 +4,7 @@
 #include "quadtree.hh"
 #include <cstdlib>
 #include <vector>
-
-//--------------------------METODOS DE LA CLASE POINT------------------------------
-
-
-int Point::getPX(){
-	return this->x;
-}
-int Point::getPY(){
-	return this->y;
-}
-void Point::setPX(int v){
-	this->x = v;
-}
-void Point::setPY(int v){
-	this->y = v;
-}
-
-bool Point::inBounds(Point p){
-	//Esta funcion nos dice si el punto pertenece a nuestra "base"
-	Point ArIz = Point(0,0);
-	Point BaDe = Point(800,800);
-	return (p.x >= ArIz.x && p.x <= BaDe.x && p.y >= ArIz.y && p.y <= BaDe.y);
-}
-
-
-//--------------------------------END OF POINT-----------------------------------
+#include "Point.cpp"
 
 
 //----------------------------------END OF Square-------------------------------
@@ -51,12 +26,20 @@ void Qtree::insert(QtreeNode * &root, QtreeNode *Padre, Point p){
 			root->NorthEast = nullptr;
 			root->SouthWest = nullptr;
 			root->SouthEast = nullptr;
+			root->NorthWest->TopL.setPX(root->TopL.getPX()/2);
+			root->NorthWest->TopL.setPY(root->TopL.getPY()/2);
+			root->NorthWest->BotR.setPX((root->TopL.getPX() + root->BotR.getPX())/2);
+			root->NorthWest->BotR.setPY((root->TopL.getPY() + root->BotR.getPY())/2);
 		}
 		else if(p.getPX() >= (root->TopL.getPX() + root->BotR.getPX())/2 && p.getPY() <= (root->TopL.getPY() + root->BotR.getPY())/2){ // Arriba derecha
 			root->NorthWest = nullptr;
 			root->NorthEast->Puntos.push_back(p);
 			root->SouthWest = nullptr;
 			root->SouthEast = nullptr;
+			root->NorthWest->TopL.setPX(0);
+			root->NorthWest->TopL.setPY(0);
+			root->NorthWest->BotR.setPX((root->TopL.getPX() + root->BotR.getPX())/2);
+			root->NorthWest->BotR.setPY((root->TopL.getPY() + root->BotR.getPY())/2);
 		}
 		else if(p.getPX() <= (root->TopL.getPX() + root->BotR.getPX())/2 && p.getPY() >= (root->TopL.getPY() + root->BotR.getPY())/2){ // Abajo izquierda
 			root->NorthEast = nullptr;
@@ -81,7 +64,7 @@ void Qtree::insert(QtreeNode * &root, QtreeNode *Padre, Point p){
 		}
 	}
 }
-void insertP(Point p){
+void Qtree::insertP(Point p){
 	//incovar el metodo anterior sumando al contador
 	
 }
@@ -90,7 +73,9 @@ void insertP(Point p){
 
 
 
-
+void Qtree::insert(QtreeNode * &root, QtreeNode *Padre, Point p){
+	
+}
 
 /*Qtree::QtreeNode * Qtree::find()const{
 	//no se que hacer aca aun
