@@ -23,12 +23,12 @@ public:
 	Graph();					// Default constructor
 	~Graph();					// Constructor parametrizado
 	void ChangePos(Node &nod, unsigned x0, unsigned y0); 		// Cambia la posición del nodo
-	void searchPath(Node nod);			// Busca todos los caminos que haya		
+	void searchPath(Node nod);			// Busca todos los caminos que haya
 	bool pathExistence(Node nod);			// Verifica si hay un camino entre 2 nodos
 	void bestPath(Node nod1);			// Busca el mejor camino entre 2 nodos.
 
 
-		
+
 };
 
 

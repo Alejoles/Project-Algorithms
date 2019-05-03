@@ -8,11 +8,11 @@
 
 
 void Graph::ChangePos(Node &nod, unsigned x0, unsigned y0){
-	nod->Punto.setPX(x0);
-	nod->Punto.setPY(y0);
+	nod.Punto.setPX(x0);
+	nod.Punto.setPY(y0);
 }
 /*
-bool Node::PathExistence(){ 
+bool Node::PathExistence(){
 }
 void Node::searchPath(){ // Buscar el camino en la matriz de adyacencia
 }
@@ -21,19 +21,6 @@ void Node::bestPath(){
 }
 
 */
-
-bool Graph::isConnected(){
-	return true;
-}
-void Graph::MakeConection(Node con,Node tocon){
-
-}
-void Graph::GiveDirection(){
-
-}
-bool Graph::directionTo(){
-	return true;
-}
 
 
 //---------------------------------------------------------------------------------------------------
