@@ -17,6 +17,7 @@ class Point {
 		void setPX(int v);
 		void setPY(int v);
 		bool inBounds(Point p);
+		void PErase();
 };
 //------------------------------Acá se acaba la structura Point-------------------------------
 

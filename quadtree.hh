@@ -15,7 +15,7 @@
 class Qtree {
 	private:
 		struct QtreeNode {
-			vector<Point> Puntos;
+			std::vector<Point> Puntos;
 			Point TopL = Point(0,0);		// puntos pueden ir en privado
 			Point BotR = Point(800,800);
 			bool leaf = false;
@@ -24,29 +24,29 @@ class Qtree {
 			QtreeNode *SouthWest = nullptr;
 			QtreeNode *SouthEast = nullptr;
 			QtreeNode *Padre = nullptr;		// Guarda el dato del nodo anterior para así saber de donde viene
-			
+
 			// QtreeNode(Point v, Node *NW = nullptr, Node *NE = nullptr, Node *SW = nullptr, Node *SE = nullptr): Value{v}, NorthWest{NW}, NorthEast{NE}, SouthWest{SW}, SouthEast{SE} {}
-			
+
 		};
-		
-		
+
+
 		/*QtreeNode * Successor(QtreeNode *root)const;
 		QtreeNode * Predecessor(QtreeNode *root)const;*/
-		
+
 		void remove(QtreeNode * &root, Point p);
-		void insert(QtreeNode * &root, QtreeNode *Padre, Point p);
+		void insert(QtreeNode * &root, QtreeNode *Padre, Point p, unsigned count);
 		void clear(QtreeNode * &root);
 		void calificar(); // lo que hace esta funcion es ver que nodos son hojas y que nodos no lo son
 		//QtreeNode * find(QtreeNode *root, Point p)const;
 		void Invariante() const;
-		
+
 		//size_t Num_Leaves(QtreeNode *root)const;
-		
+
 		//-------------- Bounds // Esquinas -------------
-		
+
 		QtreeNode *Quadtree = nullptr;
 		size_t count = 0;
-		
+
 
 	public:
 		Qtree() = default;
@@ -55,9 +55,9 @@ class Qtree {
 		bool find(Point p)const;//not sure
 		void remove(Point p);// no estoy seguro de que quitar
 		void clear(void);
-		
-		
-		
+
+
+
 };
 //---------------------------Acá se acaba la clase qtree-------------------------------------------------
 

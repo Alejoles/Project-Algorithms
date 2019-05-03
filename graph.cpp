@@ -24,10 +24,10 @@ void Node::bestPath(){
 
 bool Graph::isConnected(){
 	return true;
-}			
+}
 void Graph::MakeConection(Node con,Node tocon){
 
-}	
+}
 void Graph::GiveDirection(){
 
 }

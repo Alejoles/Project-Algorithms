@@ -5,15 +5,15 @@
 
 
 //--------------------------METODOS DE LA CLASE POINT------------------------------
-
+void Point::PErase(){
+	this->x = -1;
+	this->y = -1;
+}
 Point::~Point(){
 	 PErase();
 }
 
-void PErase(Point p){
-	this->x = -1;
-	this->y = -1;
-}
+
 
 int Point::getPX(){
 	return this->x;
