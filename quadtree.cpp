@@ -83,9 +83,13 @@ void Qtree::insert(QtreeNode * &root, QtreeNode *Padre, Point p){
 }
 void insertP(Point p){
 	//incovar el metodo anterior sumando al contador
+	
 }
 
 // Se puede crear un metodo para organizar los puntos tal que todos queden en las hojas
+
+
+
 
 
 /*Qtree::QtreeNode * Qtree::find()const{
