@@ -45,7 +45,7 @@ class Qtree {
 		//-------------- Bounds // Esquinas -------------
 
 		QtreeNode *Quadtree = nullptr;
-		size_t count = 0;
+		size_t count = 5;
 
 
 	public:

@@ -33,6 +33,7 @@ void Qtree::insert(QtreeNode * &root, QtreeNode *Padre, Point p, unsigned count 
 				root->NorthWest->TopL.setPY(root->TopL.getPY());
 				root->NorthWest->BotR.setPX(Midx);
 				root->NorthWest->BotR.setPY(Midy);
+				root->NorthWest->leaf = true;
 			}
 			else if(p.getPX() >= (root->TopL.getPX() + root->BotR.getPX())/2 && p.getPY() <= (root->TopL.getPY() + root->BotR.getPY())/2){ // Arriba derecha
 				root->NorthWest = nullptr;
@@ -43,6 +44,7 @@ void Qtree::insert(QtreeNode * &root, QtreeNode *Padre, Point p, unsigned count 
 				root->NorthEast->TopL.setPY(root->TopL.getPY());
 				root->NorthEast->BotR.setPX(root->BotR.getPX());
 				root->NorthEast->BotR.setPY(Midy);
+				root->NorthEast->leaf = true;
 			}
 			else if(p.getPX() <= (root->TopL.getPX() + root->BotR.getPX())/2 && p.getPY() >= (root->TopL.getPY() + root->BotR.getPY())/2){ // Abajo izquierda
 				root->NorthEast = nullptr;
@@ -53,6 +55,7 @@ void Qtree::insert(QtreeNode * &root, QtreeNode *Padre, Point p, unsigned count 
 				root->SouthWest->TopL.setPY(Midy);
 				root->SouthWest->BotR.setPX(Midx);
 				root->SouthWest->BotR.setPY(root->BotR.getPY());
+				root->SouthWest->leaf = true;
 			}
 			else if(p.getPX() >= (root->TopL.getPX() + root->BotR.getPX())/2 && p.getPY() >= (root->TopL.getPY() + root->BotR.getPY())/2){ // Abajo Derecha
 				root->NorthEast = nullptr;
@@ -63,12 +66,15 @@ void Qtree::insert(QtreeNode * &root, QtreeNode *Padre, Point p, unsigned count 
 				root->SouthEast->TopL.setPY(Midy);
 				root->SouthEast->BotR.setPX(root->BotR.getPX());
 				root->SouthEast->BotR.setPY(root->BotR.getPY());
+				root->SouthEast->leaf = true;
 			}
 		}
 		// cada nodo asignarlo en su correspondiente valor
 
 		else {// caso recursivo, va mirando en dónde meter el nodo, y se ejecuta las veces necesarias.
 			if(p.getPX() <= (root->TopL.getPX() + root->BotR.getPX())/2 && p.getPY() <= (root->TopL.getPY() + root->BotR.getPY())/2){ // Arriba izquierda
+				root = new QtreeNode;
+				root->Padre = Padre;
 				root->NorthWest->TopL.setPX(root->TopL.getPX());
 				root->NorthWest->TopL.setPY(root->TopL.getPY());
 				root->NorthWest->BotR.setPX(Midx);
@@ -76,6 +82,8 @@ void Qtree::insert(QtreeNode * &root, QtreeNode *Padre, Point p, unsigned count 
 				insert(root->NorthWest, Padre, p, count--);
 			}
 			else if(p.getPX() >= (root->TopL.getPX() + root->BotR.getPX())/2 && p.getPY() <= (root->TopL.getPY() + root->BotR.getPY())/2){ // Arriba derecha
+				root = new QtreeNode;
+				root->Padre = Padre;
 				root->NorthEast->TopL.setPX(Midx);
 				root->NorthEast->TopL.setPY(root->TopL.getPY());
 				root->NorthEast->BotR.setPX(root->BotR.getPX());
@@ -83,6 +91,8 @@ void Qtree::insert(QtreeNode * &root, QtreeNode *Padre, Point p, unsigned count 
 				insert(root->NorthEast, Padre, p, count--);
 			}
 			else if(p.getPX() <= (root->TopL.getPX() + root->BotR.getPX())/2 && p.getPY() >= (root->TopL.getPY() + root->BotR.getPY())/2){ // Abajo izquierda
+				root = new QtreeNode;
+				root->Padre = Padre;
 				root->SouthWest->TopL.setPX(root->TopL.getPX());
 				root->SouthWest->TopL.setPY(Midy);
 				root->SouthWest->BotR.setPX(Midx);
@@ -90,6 +100,8 @@ void Qtree::insert(QtreeNode * &root, QtreeNode *Padre, Point p, unsigned count 
 				insert(root->SouthWest, Padre, p, count--);
 			}
 			else if(p.getPX() >= (root->TopL.getPX() + root->BotR.getPX())/2 && p.getPY() >= (root->TopL.getPY() + root->BotR.getPY())/2){ // Abajo Derecha
+				root = new QtreeNode;
+				root->Padre = Padre;
 				root->SouthEast->TopL.setPX(Midx);
 				root->SouthEast->TopL.setPY(Midy);
 				root->SouthEast->BotR.setPX(root->BotR.getPX());
@@ -107,6 +119,9 @@ void Qtree::insertP(Point p){
 
 }
 
+void Qtree::remove(root * &root, Point p){
+
+}
 // Se puede crear un metodo para organizar los puntos tal que todos queden en las hojas
 
 

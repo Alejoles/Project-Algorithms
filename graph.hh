@@ -2,7 +2,6 @@
 #define _graph_hh_
 #include <vector>
 
-#include "Point.cpp"
 //-----------------------------Acá empiezan las estructuras del grafo---------------------------
 //----------------------------------------Estructura Nodo(vertice||vertex)---------------------------------------------
 
@@ -14,19 +13,16 @@ private:
 	};
 	struct Edge {
 		unsigned Value;
-		Node * Tail;
-		Node * Head;
+		std::vector<Node> nodos;
 	};
-	Node * grafo = nullptr;
-	std::vector<Point> puntos;
+	std::vector<Point> puntos;	// Puntos que almacena el grafo para posteriormente hacer el cubrimiento
 public:
 	Graph();					// Default constructor
 	~Graph();					// Constructor parametrizado
 	void ChangePos(Node &nod, unsigned x0, unsigned y0); 		// Cambia la posición del nodo
-	void searchPath(Node nod);			// Busca todos los caminos que haya
-	bool pathExistence(Node nod);			// Verifica si hay un camino entre 2 nodos
-	void bestPath(Node nod1);			// Busca el mejor camino entre 2 nodos.
-
+	bool pathExistence(Node nod1, Node nod2);			// Verifica si hay un camino entre 2 nodos
+	void bestPath(Node nod1, Node nod2);			// Busca el mejor camino entre 2 nodos.
+	void Cubrimiento(); // U Know
 
 
 };
