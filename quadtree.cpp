@@ -116,11 +116,34 @@ void Qtree::insert(QtreeNode * &root, QtreeNode *Padre, Point p, unsigned count 
 }
 void Qtree::insertP(Point p){
 	//incovar el metodo anterior sumando al contador
-
+	insert(Quadtree, Quadtree->Padre, p, 5);
 }
 
-void Qtree::remove(root * &root, Point p){
-
+void Qtree::remove(QtreeNode * &root, Point p){
+	if(!(root->leaf) && root != nullptr){
+		if(p.getPX() <= (root->TopL.getPX() + root->BotR.getPX())/2 && p.getPY() <= (root->TopL.getPY() + root->BotR.getPY())/2){ // Arriba izquierda
+			remove(root->NorthWest, p);
+		}
+		else if(p.getPX() >= (root->TopL.getPX() + root->BotR.getPX())/2 && p.getPY() <= (root->TopL.getPY() + root->BotR.getPY())/2){ // Arriba derecha
+			remove(root->NorthEast, p);
+		}
+		else if(p.getPX() <= (root->TopL.getPX() + root->BotR.getPX())/2 && p.getPY() >= (root->TopL.getPY() + root->BotR.getPY())/2){ // Abajo izquierda
+			remove(root->SouthWest, p);
+		}
+		else if(p.getPX() >= (root->TopL.getPX() + root->BotR.getPX())/2 && p.getPY() >= (root->TopL.getPY() + root->BotR.getPY())/2){ // Abajo Derecha
+			remove(root->SouthEast, p);
+		}
+	}
+	else{
+		if(root == nullptr) std::cout << "El punto no se encuentra" << std::endl;
+		else if(root->leaf){
+			for(unsigned i = 0; i< root->Puntos.size(); i++){
+				if(root->Puntos[i].getPX() == p.getPX() && root->Puntos[i].getPY() == p.getPY()){
+					root->Puntos.erase(i);
+				}
+			}
+		}
+	}
 }
 // Se puede crear un metodo para organizar los puntos tal que todos queden en las hojas
 
