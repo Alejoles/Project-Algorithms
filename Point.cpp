@@ -10,7 +10,7 @@ void Point::PErase(){
 	this->y = -1;
 }
 Point::~Point(){
-	 PErase();
+	// PErase();
 }
 
 

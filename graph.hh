@@ -1,6 +1,8 @@
+#include "Point.cpp"
 #ifndef _graph_hh_
 #define _graph_hh_
 #include <vector>
+
 
 //-----------------------------Acá empiezan las estructuras del grafo---------------------------
 //----------------------------------------Estructura Nodo(vertice||vertex)---------------------------------------------
@@ -20,7 +22,7 @@ public:
 	Graph();					// Default constructor
 	~Graph();					// Constructor parametrizado
 	void ChangePos(Node &nod, unsigned x0, unsigned y0); 		// Cambia la posición del nodo
-	bool pathExistence(Node nod1, Node nod2);			// Verifica si hay un camino entre 2 nodos
+	bool pathExistence(Node nod1, Node nod2);			// Verifica si hay un camino entre 2 nodos "Helper function"
 	void bestPath(Node nod1, Node nod2);			// Busca el mejor camino entre 2 nodos.
 	void Cubrimiento(); // U Know
 

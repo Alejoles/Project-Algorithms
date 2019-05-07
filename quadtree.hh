@@ -1,9 +1,9 @@
+#include "Point.cpp"
 #ifndef _quadtree_hh
 #define	_quadtree_hh
 #include <iostream>
 #include <vector>
 
-#include "Point.cpp"
 
 
 //Se elimino la estructura Rect ya que se reemplazo por 2 puntos que marcan las esquinas.

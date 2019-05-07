@@ -1,8 +1,9 @@
+#include "Point.cpp"
 #ifndef _graph_cpp_
 #define _graph_cpp_
 
 #include "graph.hh"
-#include "Point.cpp"
+
 
 //---------------------------Vamos a definir los metodos de la clase Node----------------------
 
@@ -26,3 +27,4 @@ void Node::bestPath(){
 //---------------------------------------------------------------------------------------------------
 
 #endif // graph.cpp
+

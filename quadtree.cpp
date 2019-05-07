@@ -1,10 +1,11 @@
+#include "Point.cpp"
 #ifndef _quadtree_cpp_
 #define _quadtree_cpp_
 
 #include "quadtree.hh"
 #include <cstdlib>
 #include <vector>
-#include "Point.cpp"
+
 
 
 //----------------------------------END OF Square-------------------------------
@@ -139,7 +140,7 @@ void Qtree::remove(QtreeNode * &root, Point p){
 		else if(root->leaf){
 			for(unsigned i = 0; i< root->Puntos.size(); i++){
 				if(root->Puntos[i].getPX() == p.getPX() && root->Puntos[i].getPY() == p.getPY()){
-					root->Puntos.erase(i);
+					root->Puntos.pop_back();
 				}
 			}
 		}
@@ -177,4 +178,4 @@ Qtree::~Qtree(){
 	clear();
 }
 
-#endif
+#endif // quadtree.cpp
