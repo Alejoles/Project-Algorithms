@@ -17,10 +17,12 @@ void Qtree::Invariante() const{
 void Qtree::insert(QtreeNode * &root, Point p, unsigned count){
 	//chequear en que parte del mapeado estan los puntos y asi mismo agregarlos al arbol
 	if(p.inBounds(p)){
+		std::cout << "Entro a antes el caso base" << std::endl;
 		unsigned Midx = (root->TopL.getPX() + root->BotR.getPX())/2;
 		unsigned Midy = (root->TopL.getPY() + root->BotR.getPY())/2;
+		std::cout << "evaluó el midx y el midx" << std::endl;
 		if(root == nullptr && count <= 0){			// caso base recursivo //contador que me diga la altura maxima del arbol para ir insertando nodos precisamente dentro del arbol para saber su ubicacion.
-			std::cout << "If Primero" << std::endl;
+			std::cout << "If caso base" << std::endl;
 			root = new QtreeNode;
 			//root->Padre = Padre;
 			if(p.getPX() <= (root->TopL.getPX() + root->BotR.getPX())/2 && p.getPY() <= (root->TopL.getPY() + root->BotR.getPY())/2){	// Arriba izquierda
@@ -28,8 +30,10 @@ void Qtree::insert(QtreeNode * &root, Point p, unsigned count){
 				root->NorthEast = nullptr;
 				root->SouthWest = nullptr;
 				root->SouthEast = nullptr;
-				root->NorthWest->TopL.setPX(root->TopL.getPX());
-				root->NorthWest->TopL.setPY(root->TopL.getPY());
+				int topx = root->TopL.getPX();
+				int topy = root->TopL.getPY();
+				root->NorthWest->TopL.setPX(topx);
+				root->NorthWest->TopL.setPY(topy);
 				root->NorthWest->BotR.setPX(Midx);
 				root->NorthWest->BotR.setPY(Midy);
 				root->NorthWest->leaf = true;
@@ -71,8 +75,8 @@ void Qtree::insert(QtreeNode * &root, Point p, unsigned count){
 		// cada nodo asignarlo en su correspondiente valor
 
 		else if(root == nullptr && count > 0) {// caso recursivo, va mirando en dónde meter el nodo, y se ejecuta las veces necesarias.
-			root = new QtreeNode;
 			std::cout << "If recursivo" << std::endl;
+			root = new QtreeNode;
 			if(p.getPX() <= (root->TopL.getPX() + root->BotR.getPX())/2 && p.getPY() <= (root->TopL.getPY() + root->BotR.getPY())/2){ // Arriba izquierda
 				root->NorthWest->TopL.setPX(root->TopL.getPX());
 				root->NorthWest->TopL.setPY(root->TopL.getPY());
@@ -111,15 +115,19 @@ void Qtree::insert(QtreeNode * &root, Point p, unsigned count){
 		else{
 			std::cout << "If recursivo 2" << std::endl;
 			if(p.getPX() <= (root->TopL.getPX() + root->BotR.getPX())/2 && p.getPY() <= (root->TopL.getPY() + root->BotR.getPY())/2){ // Arriba izquierda
+				std::cout << "else arriba izquierda 2" << std::endl;
 				insert(root->NorthWest, p, count--);
 			}
 			else if(p.getPX() >= (root->TopL.getPX() + root->BotR.getPX())/2 && p.getPY() <= (root->TopL.getPY() + root->BotR.getPY())/2){ // Arriba derecha
+				std::cout << "else arriba derecha 2" << std::endl;
 				insert(root->NorthEast, p, count--);
 			}
 			else if(p.getPX() <= (root->TopL.getPX() + root->BotR.getPX())/2 && p.getPY() >= (root->TopL.getPY() + root->BotR.getPY())/2){ // Abajo izquierda
+				std::cout << "else abajo izquierda 2" << std::endl;
 				insert(root->SouthWest, p, count--);
 			}
 			else if(p.getPX() >= (root->TopL.getPX() + root->BotR.getPX())/2 && p.getPY() >= (root->TopL.getPY() + root->BotR.getPY())/2){ // Abajo Derecha
+				std::cout << "else abajo derecha 2" << std::endl;
 				insert(root->SouthEast, p, count--);
 			}
 		}
