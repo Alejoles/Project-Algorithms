@@ -1,6 +1,6 @@
 #include <iostream>
-#include "quadtree.cpp"
-#include "graph.cpp"
+#include "quadtree.hh"
+#include "graph.hh"
 //#include "Point.cpp"
 
 int main(void){

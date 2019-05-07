@@ -1,7 +1,4 @@
-#include "Point.cpp"
-#ifndef _graph_cpp_
-#define _graph_cpp_
-
+#include "Point.hpp"
 #include "graph.hh"
 
 
@@ -26,5 +23,4 @@ void Node::bestPath(){
 
 //---------------------------------------------------------------------------------------------------
 
-#endif // graph.cpp
 

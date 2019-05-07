@@ -1,8 +1,7 @@
-#include "Point.cpp"
 #ifndef _graph_hh_
 #define _graph_hh_
 #include <vector>
-
+#include "Point.hpp"
 
 //-----------------------------Acá empiezan las estructuras del grafo---------------------------
 //----------------------------------------Estructura Nodo(vertice||vertex)---------------------------------------------

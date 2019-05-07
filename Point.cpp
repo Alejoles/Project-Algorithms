@@ -1,6 +1,3 @@
-#ifndef _Point_cpp_
-#define _Point_cpp_
-
 #include "Point.hpp"
 
 
@@ -39,7 +36,3 @@ bool Point::inBounds(Point p){
 //--------------------------------END OF POINT-----------------------------------
 
 
-
-
-
-#endif // Point.cpp
