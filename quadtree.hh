@@ -23,7 +23,7 @@ class Qtree {
 			QtreeNode *NorthEast = nullptr;
 			QtreeNode *SouthWest = nullptr;
 			QtreeNode *SouthEast = nullptr;
-			//QtreeNode *Padre = nullptr;		// Guarda el dato del nodo anterior para así saber de donde viene
+			QtreeNode *Padre = nullptr;		// Guarda el dato del nodo anterior para así saber de donde viene
 
 			// QtreeNode(Point v, Node *NW = nullptr, Node *NE = nullptr, Node *SW = nullptr, Node *SE = nullptr): Value{v}, NorthWest{NW}, NorthEast{NE}, SouthWest{SW}, SouthEast{SE} {}
 
@@ -34,7 +34,7 @@ class Qtree {
 		QtreeNode * Predecessor(QtreeNode *root)const;*/
 
 		void remove(QtreeNode * &root, Point p);
-		void insert(QtreeNode * &root, Point p, unsigned count);
+		void insert(QtreeNode * &root, QtreeNode *Padre, Point p, unsigned count);
 		void clear(QtreeNode * &root);
 		void calificar(); // lo que hace esta funcion es ver que nodos son hojas y que nodos no lo son
 		//QtreeNode * find(QtreeNode *root, Point p)const;
@@ -44,12 +44,12 @@ class Qtree {
 
 		//-------------- Bounds // Esquinas -------------
 
-		QtreeNode *root;
+		QtreeNode *root = nullptr;
 		size_t count = 5;
 
 
 	public:
-		Qtree();
+		Qtree() = default;
 		~Qtree();
 		void insertP(Point p);
 		bool find(Point p)const;//not sure

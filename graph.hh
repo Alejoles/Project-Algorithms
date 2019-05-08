@@ -2,6 +2,7 @@
 #define _graph_hh_
 #include <vector>
 #include "Point.hpp"
+#include "Simpleg.hpp"
 
 //-----------------------------Acá empiezan las estructuras del grafo---------------------------
 //----------------------------------------Estructura Nodo(vertice||vertex)---------------------------------------------
@@ -10,7 +11,7 @@
 
 class Graph {
 private:
-	std::vector<std::vector<bool>>
+	SimpleGraph grafo;
 	std::vector<Point> puntos;	// Puntos que almacena el grafo para posteriormente hacer el cubrimiento
 public:
 	Graph();					// Default constructor
