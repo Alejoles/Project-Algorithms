@@ -21,9 +21,8 @@ void Qtree::insert(QtreeNode * &root, Point p, unsigned count){
 		unsigned Midx = (root->TopL.getPX() + root->BotR.getPX())/2;
 		unsigned Midy = (root->TopL.getPY() + root->BotR.getPY())/2;
 		std::cout << "evaluó el midx y el midx" << std::endl;
-		if(root == nullptr && count <= 0){			// caso base recursivo //contador que me diga la altura maxima del arbol para ir insertando nodos precisamente dentro del arbol para saber su ubicacion.
+		if(count == 0){			// caso base recursivo //contador que me diga la altura maxima del arbol para ir insertando nodos precisamente dentro del arbol para saber su ubicacion.
 			std::cout << "If caso base" << std::endl;
-			root = new QtreeNode;
 			//root->Padre = Padre;
 			if(p.getPX() <= (root->TopL.getPX() + root->BotR.getPX())/2 && p.getPY() <= (root->TopL.getPY() + root->BotR.getPY())/2){	// Arriba izquierda
 				root->NorthWest->Puntos.push_back(p);
