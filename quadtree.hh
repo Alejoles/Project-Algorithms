@@ -34,7 +34,7 @@ class Qtree {
 		QtreeNode * Predecessor(QtreeNode *root)const;*/
 
 		void remove(QtreeNode * &root, Point p);
-		void insert(QtreeNode * &root, QtreeNode *Padre, Point p, unsigned count);
+		void insert(QtreeNode * &root, QtreeNode *Padre, Point p, int count);
 		void clear(QtreeNode * &root);
 		void calificar(); // lo que hace esta funcion es ver que nodos son hojas y que nodos no lo son
 		//QtreeNode * find(QtreeNode *root, Point p)const;

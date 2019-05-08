@@ -7,8 +7,7 @@ int main(void){
 
 	Qtree q;
 	Point punto;
-	punto = Point(580,360);
+	punto = Point(580,760);
 	q.insertP(punto);
-	
 	return 0;
 }

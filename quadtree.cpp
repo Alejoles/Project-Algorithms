@@ -9,7 +9,7 @@ void Qtree::Invariante() const{
 
 }
 
-void Qtree::insert(QtreeNode * &root, QtreeNode *Padre, Point p, unsigned count){
+void Qtree::insert(QtreeNode * &root, QtreeNode *Padre, Point p, int count){
 	//chequear en que parte del mapeado estan los puntos y asi mismo agregarlos al arbol
 	if(p.inBounds(p)){
 		std::cout << "Entro a antes de evaluar mid" << std::endl;
@@ -22,6 +22,7 @@ void Qtree::insert(QtreeNode * &root, QtreeNode *Padre, Point p, unsigned count)
 			unsigned Midx = (root->Padre->TopL.getPX() + root->Padre->BotR.getPX())/2;
 			unsigned Midy = (root->Padre->TopL.getPY() + root->Padre->BotR.getPY())/2;
 			if(p.getPX() <= (root->Padre->TopL.getPX() + root->Padre->BotR.getPX())/2 && p.getPY() <= (root->Padre->TopL.getPY() + root->Padre->BotR.getPY())/2){	// Arriba izquierda
+				std::cout << "arriba izquierda" << std::endl;
 				root->Puntos.push_back(p); 
 				int topx = root->Padre->TopL.getPX();
 				int topy = root->Padre->TopL.getPY();
@@ -32,6 +33,7 @@ void Qtree::insert(QtreeNode * &root, QtreeNode *Padre, Point p, unsigned count)
 				root->leaf = true;
 			}
 			else if(p.getPX() >= (root->Padre->TopL.getPX() + root->Padre->BotR.getPX())/2 && p.getPY() <= (root->Padre->TopL.getPY() + root->Padre->BotR.getPY())/2){ // Arriba derecha
+				std::cout << "arriba derecha" << std::endl;
 				root->Puntos.push_back(p);
 				root->TopL.setPX(Midx);
 				root->TopL.setPY(root->Padre->TopL.getPY());
@@ -40,6 +42,7 @@ void Qtree::insert(QtreeNode * &root, QtreeNode *Padre, Point p, unsigned count)
 				root->leaf = true;
 			}
 			else if(p.getPX() <= (root->Padre->TopL.getPX() + root->Padre->BotR.getPX())/2 && p.getPY() >= (root->Padre->TopL.getPY() + root->Padre->BotR.getPY())/2){ // Abajo izquierda
+				std::cout << "abajo izquierda" << std::endl;
 				root->Puntos.push_back(p);
 				root->TopL.setPX(root->Padre->TopL.getPX());
 				root->TopL.setPY(Midy);
@@ -48,6 +51,7 @@ void Qtree::insert(QtreeNode * &root, QtreeNode *Padre, Point p, unsigned count)
 				root->leaf = true;
 			}
 			else if(p.getPX() >= (root->Padre->TopL.getPX() + root->Padre->BotR.getPX())/2 && p.getPY() >= (root->Padre->TopL.getPY() + root->Padre->BotR.getPY())/2){ // Abajo Derecha
+				std::cout << "abajo derecha" << std::endl;
 				root->Puntos.push_back(p);
 				root->TopL.setPX(Midx);
 				root->TopL.setPY(Midy);
@@ -62,40 +66,44 @@ void Qtree::insert(QtreeNode * &root, QtreeNode *Padre, Point p, unsigned count)
 			root = new QtreeNode;
 			unsigned Midx = (root->TopL.getPX() + root->BotR.getPX())/2;
 			unsigned Midy = (root->TopL.getPY() + root->BotR.getPY())/2;
-			std::cout << "MIIIIIIX" << std::endl;
+			//count = count-1;
 			if(p.getPX() <= (root->TopL.getPX() + root->BotR.getPX())/2 && p.getPY() <= (root->TopL.getPY() + root->BotR.getPY())/2){ // Arriba izquierda
+				std::cout << "arriba izquierda" << std::endl;
 				root->TopL.setPX(root->TopL.getPX());
 				root->TopL.setPY(root->TopL.getPY());
 				root->BotR.setPX(Midx);
 				root->BotR.setPY(Midy);
-				insert(root->NorthWest, root, p, count--);
+				insert(root->NorthWest, root, p, --count);
 			}
 			else if(p.getPX() >= (root->TopL.getPX() + root->BotR.getPX())/2 && p.getPY() <= (root->TopL.getPY() + root->BotR.getPY())/2){ // Arriba derecha
 				//root = new QtreeNode;
 				//root->Padre = Padre;
+				std::cout << "arriba derecha" << std::endl;
 				root->TopL.setPX(Midx);
 				root->TopL.setPY(root->TopL.getPY());
 				root->BotR.setPX(root->BotR.getPX());
 				root->BotR.setPY(Midy);
-				insert(root->NorthEast, root, p, count--);
+				insert(root->NorthEast, root, p, --count);
 			}
 			else if(p.getPX() <= (root->TopL.getPX() + root->BotR.getPX())/2 && p.getPY() >= (root->TopL.getPY() + root->BotR.getPY())/2){ // Abajo izquierda
 				//root = new QtreeNode;
 				//root->Padre = Padre;
+				std::cout << "abajo izquierda" << std::endl;
 				root->TopL.setPX(root->TopL.getPX());
 				root->TopL.setPY(Midy);
 				root->BotR.setPX(Midx);
 				root->BotR.setPY(root->BotR.getPY());
-				insert(root->SouthWest, root, p, count--);
+				insert(root->SouthWest, root, p, --count);
 			}
 			else if(p.getPX() >= (root->TopL.getPX() + root->BotR.getPX())/2 && p.getPY() >= (root->TopL.getPY() + root->BotR.getPY())/2){ // Abajo Derecha
 				//root = new QtreeNode;
 				//root->Padre = Padre;
+				std::cout << "abajo derecha" << std::endl;
 				root->TopL.setPX(Midx);
 				root->TopL.setPY(Midy);
 				root->BotR.setPX(root->BotR.getPX());
 				root->BotR.setPY(root->BotR.getPY());
-				insert(root->SouthEast, root, p, count--);
+				insert(root->SouthEast, root, p, --count);
 			}
 		}
 		else if(root == nullptr && count > 0 && Padre != nullptr) {// caso recursivo, va mirando en dónde meter el nodo, y se ejecuta las veces necesarias.
@@ -104,58 +112,65 @@ void Qtree::insert(QtreeNode * &root, QtreeNode *Padre, Point p, unsigned count)
 			root->Padre = Padre;
 			unsigned Midx = (root->Padre->TopL.getPX() + root->Padre->BotR.getPX())/2;
 			unsigned Midy = (root->Padre->TopL.getPY() + root->Padre->BotR.getPY())/2;
+			//count = count-1;
 			if(p.getPX() <= (root->Padre->TopL.getPX() + root->Padre->BotR.getPX())/2 && p.getPY() <= (root->Padre->TopL.getPY() + root->Padre->BotR.getPY())/2){ // Arriba izquierda
+				std::cout << Midx << std::endl;
+				std::cout << "arriba izquierda" << std::endl;
 				root->TopL.setPX(root->Padre->TopL.getPX());
 				root->TopL.setPY(root->Padre->TopL.getPY());
 				root->BotR.setPX(Midx);
 				root->BotR.setPY(Midy);
-				insert(root->NorthWest, root, p, count--);
+				insert(root->NorthWest, root, p, --count);
 			}
 			else if(p.getPX() >= (root->Padre->TopL.getPX() + root->Padre->BotR.getPX())/2 && p.getPY() <= (root->Padre->TopL.getPY() + root->Padre->BotR.getPY())/2){ // Arriba derecha
 				//root = new QtreeNode;
 				//root->Padre = Padre;
+				std::cout << "arriba derecha" << std::endl;
 				root->TopL.setPX(Midx);
 				root->TopL.setPY(root->Padre->TopL.getPY());
 				root->BotR.setPX(root->Padre->BotR.getPX());
 				root->BotR.setPY(Midy);
-				insert(root->NorthEast, root, p, count--);
+				insert(root->NorthEast, root, p, --count);
 			}
 			else if(p.getPX() <= (root->Padre->TopL.getPX() + root->Padre->BotR.getPX())/2 && p.getPY() >= (root->Padre->TopL.getPY() + root->Padre->BotR.getPY())/2){ // Abajo izquierda
 				//root = new QtreeNode;
 				//root->Padre = Padre;
+				std::cout << "abajo izquierda" << std::endl;
 				root->TopL.setPX(root->Padre->TopL.getPX());
 				root->TopL.setPY(Midy);
 				root->BotR.setPX(Midx);
 				root->BotR.setPY(root->Padre->BotR.getPY());
-				insert(root->SouthWest, root, p, count--);
+				insert(root->SouthWest, root, p, --count);
 			}
 			else if(p.getPX() >= (root->Padre->TopL.getPX() + root->Padre->BotR.getPX())/2 && p.getPY() >= (root->Padre->TopL.getPY() + root->Padre->BotR.getPY())/2){ // Abajo Derecha
 				//root = new QtreeNode;
 				//root->Padre = Padre;
+				std::cout << "abajo derecha" << std::endl;
 				root->TopL.setPX(Midx);
 				root->TopL.setPY(Midy);
 				root->BotR.setPX(root->Padre->BotR.getPX());
 				root->BotR.setPY(root->Padre->BotR.getPY());
-				insert(root->SouthEast, root, p, count--);
+				insert(root->SouthEast, root, p, --count);
 			}
 		}
 		else if(root != nullptr && count > 0){
 			std::cout << "If recursivo 2" << std::endl;
+			count = count-1;
 			if(p.getPX() <= (root->TopL.getPX() + root->BotR.getPX())/2 && p.getPY() <= (root->TopL.getPY() + root->BotR.getPY())/2){ // Arriba izquierda
 				std::cout << "else arriba izquierda 2" << std::endl;
-				insert(root->NorthWest, root, p, count--);
+				insert(root->NorthWest, root, p, --count);
 			}
 			else if(p.getPX() >= (root->TopL.getPX() + root->BotR.getPX())/2 && p.getPY() <= (root->TopL.getPY() + root->BotR.getPY())/2){ // Arriba derecha
 				std::cout << "else arriba derecha 2" << std::endl;
-				insert(root->NorthEast, root, p, count--);
+				insert(root->NorthEast, root, p, --count);
 			}
 			else if(p.getPX() <= (root->TopL.getPX() + root->BotR.getPX())/2 && p.getPY() >= (root->TopL.getPY() + root->BotR.getPY())/2){ // Abajo izquierda
 				std::cout << "else abajo izquierda 2" << std::endl;
-				insert(root->SouthWest, root, p, count--);
+				insert(root->SouthWest, root, p, --count);
 			}
 			else if(p.getPX() >= (root->TopL.getPX() + root->BotR.getPX())/2 && p.getPY() >= (root->TopL.getPY() + root->BotR.getPY())/2){ // Abajo Derecha
 				std::cout << "else abajo derecha 2" << std::endl;
-				insert(root->SouthEast, root, p, count--);
+				insert(root->SouthEast, root, p, --count);
 			}
 		}
 	}
