@@ -17,7 +17,7 @@ void Qtree::Invariante() const{
 void Qtree::insert(QtreeNode * &root, Point p, unsigned count){
 	//chequear en que parte del mapeado estan los puntos y asi mismo agregarlos al arbol
 	if(p.inBounds(p)){
-		std::cout << "Entro a antes el caso base" << std::endl;
+		std::cout << "Entro a antes de evaluar mid" << std::endl;
 		unsigned Midx = (root->TopL.getPX() + root->BotR.getPX())/2;
 		unsigned Midy = (root->TopL.getPY() + root->BotR.getPY())/2;
 		std::cout << "evaluó el midx y el midx" << std::endl;

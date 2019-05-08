@@ -6,16 +6,11 @@
 //-----------------------------Acá empiezan las estructuras del grafo---------------------------
 //----------------------------------------Estructura Nodo(vertice||vertex)---------------------------------------------
 
+// ARISTAS SERIAN LOS PUNTOS DONDE HAY MAYOR TASA DE ACCIDENTES
+
 class Graph {
 private:
-	struct Node {
-		Point Punto;
-		Node *link;
-	};
-	struct Edge {
-		unsigned Value;
-		std::vector<Node> nodos;
-	};
+	std::vector<std::vector<bool>>
 	std::vector<Point> puntos;	// Puntos que almacena el grafo para posteriormente hacer el cubrimiento
 public:
 	Graph();					// Default constructor
