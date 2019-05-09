@@ -204,6 +204,8 @@ void Qtree::remove(QtreeNode * &root, Point p){
 			for(unsigned i = 0; i< root->Puntos.size(); i++){
 				if(root->Puntos[i].getPX() == p.getPX() && root->Puntos[i].getPY() == p.getPY()){
 					root->Puntos.pop_back();
+				}else{
+					std::cout << "El punto no se encuentra" << std::endl;
 				}
 			}
 		}
