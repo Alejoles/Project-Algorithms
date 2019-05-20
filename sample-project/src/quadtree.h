@@ -18,7 +18,7 @@ class Qtree {
             std::vector<Punto> Puntos;
             Punto TopL = Punto(0,0);		// puntos pueden ir en privado
             Punto BotR = Punto(600,600);
-			bool leaf = false;
+            bool leaf = false;
             QtreeNode *NorthWest = nullptr; //  El QuadTree tiene 4 hijos, esto se puede intuir gracias a su nombre,
             QtreeNode *NorthEast = nullptr; //  cada uno de estos hijos tiene las mismas propiedades que sus hermanos
             QtreeNode *SouthWest = nullptr; //  o su padre.
@@ -31,14 +31,12 @@ class Qtree {
 		};
 
 
-		/*QtreeNode * Successor(QtreeNode *root)const;
-		QtreeNode * Predecessor(QtreeNode *root)const;*/
-
-        void remove(QtreeNode * &root, Punto p);
+        void remove(QtreeNode * &root, Punto p, QtreeNode *root2);
         void insert(QtreeNode * &root, QtreeNode *Padre, Punto p, int count, std::ofstream &file);
 		void clear(QtreeNode * &root);
         void recorrer(QtreeNode *root);
-        void cubrimiento(QtreeNode *root);
+        void cubrimiento(QtreeNode *&root, double NumP, std::ofstream &file, unsigned &i);
+        void Traversal(QtreeNode *&root, double &NumP, std::ostream &file);
 
 		//-------------- Bounds // Esquinas -------------
 
@@ -57,7 +55,7 @@ public:
 		void clear(void);
         void recorrer(void);
         //------------------------Grafo---------------------
-        void cubrimiento(void);
+        void cubrimiento(double NumP);
 
 
 
