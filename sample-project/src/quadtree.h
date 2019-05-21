@@ -35,7 +35,7 @@ class Qtree {
         void insert(QtreeNode * &root, QtreeNode *Padre, Punto p, int count, std::ofstream &file);
 		void clear(QtreeNode * &root);
         void recorrer(QtreeNode *root);
-        void cubrimiento(QtreeNode *&root, double NumP, std::ofstream &file, unsigned &i);
+        void cubrimiento(QtreeNode *&root, double &NumP, std::ofstream &file, unsigned &i);
         void Traversal(QtreeNode *&root, double &NumP, std::ostream &file);
 
 		//-------------- Bounds // Esquinas -------------
@@ -51,7 +51,7 @@ public:
 		Qtree() = default;
 		~Qtree();
         void insertP(Punto p);
-        void removeP(Punto p);// no estoy seguro de que quitar
+        void removeP(Punto p);
 		void clear(void);
         void recorrer(void);
         //------------------------Grafo---------------------

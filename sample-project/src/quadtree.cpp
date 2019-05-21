@@ -115,9 +115,8 @@ void Qtree::insert(QtreeNode * &root, QtreeNode *Padre, Punto p, int count, std:
                 root->BotR.setPX(Midx);
                 root->BotR.setPY(Midy);
 
-                /*QtreeNode *next = root;
-                next = new QtreeNode;
-                next = root;
+                //QtreeNode *next = root->NorthWest;
+                /*next = new QtreeNode;
                 next->TopL.setPX(root->Padre->TopL.getPX());
                 next->TopL.setPY(root->Padre->TopL.getPY());
                 next->BotR.setPX(Midx);
@@ -136,12 +135,13 @@ void Qtree::insert(QtreeNode * &root, QtreeNode *Padre, Punto p, int count, std:
                 std::cout << "Caso recursivo varias veces NE" << std::endl;
 
                 //QtreeNode *next = root->NorthEast;
-               /* next = new QtreeNode;
+                /*next = new QtreeNode;
                 next->numNod++;
                 next->TopL.setPX(Midx);
                 next->TopL.setPY(root->Padre->TopL.getPY());
                 next->BotR.setPX(root->Padre->BotR.getPX());
-                next->BotR.setPY(Midy);*/
+                next->BotR.setPY(Midy);
+                next->Padre = Padre;*/
 
                 file << root->TopL.getPX() << "," << root->TopL.getPY() << "," << root->BotR.getPX() << "," << root->BotR.getPY() << "." <<std::endl;
                 insert(root->NorthEast, root, p, --count,file);
@@ -161,7 +161,8 @@ void Qtree::insert(QtreeNode * &root, QtreeNode *Padre, Punto p, int count, std:
                 next->TopL.setPX(root->Padre->TopL.getPX());
                 next->TopL.setPY(Midy);
                 next->BotR.setPX(Midx);
-                next->BotR.setPY(root->Padre->BotR.getPY());*/
+                next->BotR.setPY(root->Padre->BotR.getPY());
+                next->Padre = Padre;*/
 
                 file << root->TopL.getPX() << "," << root->TopL.getPY() << "," << root->BotR.getPX() << "," << root->BotR.getPY() << "." <<std::endl;
                 insert(root->SouthWest, root, p, --count,file);
@@ -181,10 +182,11 @@ void Qtree::insert(QtreeNode * &root, QtreeNode *Padre, Punto p, int count, std:
                 next->TopL.setPX(Midx);
                 next->TopL.setPY(Midy);
                 next->BotR.setPX(root->Padre->BotR.getPX());
-                next->BotR.setPY(root->Padre->BotR.getPY());*/
+                next->BotR.setPY(root->Padre->BotR.getPY());
+                next->Padre = Padre;*/
 
                 file << root->TopL.getPX() << "," << root->TopL.getPY() << "," << root->BotR.getPX() << "," << root->BotR.getPY() << "." <<std::endl;
-                insert(root->NorthEast, root, p, --count,file);
+                insert(root->SouthEast, root, p, --count,file);
 			}
 		}
         else if(root != nullptr && count > 0){
@@ -418,35 +420,37 @@ void faltane(double &faltan, double &aa, double &bb, double &cc, double &dd){
     }
 }
 
-void Qtree::cubrimiento(QtreeNode *&root, double NumP,std::ofstream &file, unsigned &i){
+void Qtree::cubrimiento(QtreeNode *&root, double &NumP,std::ofstream &file, unsigned &i){
     if(root != nullptr){
         unsigned num = root->numNod;
-        if(num <= NumP){
+        if(num <= NumP && NumP > 0){
             std::cout << "Caso base" << std::endl;
             Traversal(root, NumP, file);
             return;
         }
-        /*else if(num > NumP && root->NorthWest == nullptr && i>3 && num > 1 && NumP > 1){
-            file << root->TopL.getPX() << "," << root->TopL.getPY() << "," << root->BotR.getPX()-10 << "," << root->BotR.getPY()-10 << "." <<std::endl;
-            i = 0;
-            return;
+        if(NumP <= 4 && num > NumP && NumP > 0){
+            if(root->NorthWest != nullptr && NumP > 0){
+                NumP--;
+                file << root->NorthWest->TopL.getPX() << "," << root->NorthWest->TopL.getPY() << "," << root->NorthWest->BotR.getPX()-10 << "," << root->NorthWest->BotR.getPY()-10 << "." <<std::endl;
+
+            }
+            if(root->NorthEast != nullptr && NumP > 0){
+                file << root->NorthEast->TopL.getPX() << "," << root->NorthEast->TopL.getPY() << "," << root->NorthEast->BotR.getPX()-10 << "," << root->NorthEast->BotR.getPY()-10 << "." <<std::endl;
+                NumP--;
+
+            }
+            if(root->SouthWest != nullptr && NumP > 0){
+                file << root->SouthWest->TopL.getPX() << "," << root->SouthWest->TopL.getPY() << "," << root->SouthWest->BotR.getPX()-10 << "," << root->SouthWest->BotR.getPY()-10 << "." <<std::endl;
+                NumP--;
+
+            }
+            if(root->SouthEast != nullptr && NumP > 0){
+                file << root->SouthEast->TopL.getPX() << "," << root->SouthEast->TopL.getPY() << "," << root->SouthEast->BotR.getPX()-10 << "," << root->SouthEast->BotR.getPY()-10 << "." <<std::endl;
+                NumP--;
+
+            }
         }
-        else if(num > NumP && root->NorthEast == nullptr && i>3 && num > 1 && NumP > 1){
-            file << root->TopL.getPX() << "," << root->TopL.getPY() << "," << root->BotR.getPX()-10 << "," << root->BotR.getPY()-10 << "." <<std::endl;
-            i = 0;
-            return;
-        }
-        else if(num > NumP && root->SouthWest == nullptr && i>3 && num > 1 && NumP > 1){
-            file << root->TopL.getPX() << "," << root->TopL.getPY() << "," << root->BotR.getPX()-10 << "," << root->BotR.getPY()-10 << "." <<std::endl;
-            i = 0;
-            return;
-        }
-        else if(num > NumP && root->SouthEast == nullptr && i>3 && num > 1){
-            file << root->TopL.getPX() << "," << root->TopL.getPY() << "," << root->BotR.getPX()-10 << "," << root->BotR.getPY()-10 << "." <<std::endl;
-            i = 0;
-            return;
-        }*/
-        if(num>NumP) {
+        if(num > NumP && NumP > 0) {
             std::cout << "Caso recursivo" << std::endl;
             double x = NumP/num;
             unsigned a=0,b=0,c=0,d=0;
@@ -527,7 +531,8 @@ void Qtree::cubrimiento(QtreeNode *&root, double NumP,std::ofstream &file, unsig
                 cubrimiento(root->SouthEast, dd, file,++i);
             }
         }
-    }else{
+    }
+    else{
         std::cout << "No es posible hacer un cubrimiento en un arbol null" << std::endl;
         return;
     }

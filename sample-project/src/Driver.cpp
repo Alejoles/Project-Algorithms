@@ -87,7 +87,8 @@ void leerCrearCu(GWindow *gw){
             yy = stoi(y);
             ww = stoi(w);
             hh = stoi(h);
-            gw->fillRect(ww+5,hh+5,5,5);
+            gw->fillRect((xx),(yy),5,5);
+            gw->fillRect((ww+5),(hh+5),5,5);
             x.clear();
             y.clear();
             w.clear();
@@ -112,7 +113,7 @@ int main(){
 
     Qtree q;
     Punto punto;
-    for(unsigned i = 0; i<0; i++){
+    for(unsigned i = 0; i<20; i++){
         Punto punto;
         punto.setPX(rand()%600);
         punto.setPY(rand()%600);
@@ -122,10 +123,10 @@ int main(){
         window->fillOval(x,y,5,5);
         leerCrear(window);
     }
-   /* punto = Punto(55,99);
+    punto = Punto(55,99);
     q.insertP(punto);
     window->fillOval(punto.getPX(),punto.getPY(),5,5);
-    leerCrear(window);*/
+    leerCrear(window);
     punto = Punto(5,5);
     q.insertP(punto);
     window->fillOval(punto.getPX(),punto.getPY(),5,5);
@@ -134,7 +135,7 @@ int main(){
     q.insertP(punto);
     window->fillOval(punto.getPX(),punto.getPY(),5,5);
     leerCrear(window);
-    q.cubrimiento(2);
+    q.cubrimiento(12);
     leerCrearCu(window);
 	return 0;
 }
